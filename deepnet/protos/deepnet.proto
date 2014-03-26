@@ -118,6 +118,7 @@ message Hyperparams {
     REPLICATED_SOFTMAX = 6;
     SIN = 7;
     COS = 8;
+    RSMLOGISTIC = 9;
   }
   optional Activation activation = 17 [default=LINEAR];
   optional int32 left_window = 18 [default=0];
