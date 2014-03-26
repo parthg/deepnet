@@ -20,6 +20,9 @@ class SparseCodeLayer(Layer):
       state.mult(self.temp)
     elif self.activation == deepnet_pb2.Hyperparams.RECTIFIED_LINEAR_SMOOTH:
       cm.log_1_plus_exp(state)
+    elif self.activation == deepnet_pb2.Hyperparams.RSMLOGISTIC:
+      cm.sigmoid(state)
+      self.state.apply_softmax()
     elif self.activation == deepnet_pb2.Hyperparams.LINEAR:
       pass
 
@@ -40,6 +43,8 @@ class SparseCodeLayer(Layer):
         self.deriv.mult(self.mask)
     elif self.activation == deepnet_pb2.Hyperparams.SOFTMAX:
       raise Exception('Not implemented.')
+    if self.activation == deepnet_pb2.Hyperparams.RSMLOGISTIC:
+      self.deriv.apply_logistic_deriv(state)
     else:
       raise Exception('Unknown activation.')
 

@@ -21,6 +21,7 @@ from cos_layer import *
 from sin_layer import *
 from transfer_edge import *
 from soft_transfer_edge import *
+from rsmlogistic_layer import *
 
 class NeuralNet(object):
 
